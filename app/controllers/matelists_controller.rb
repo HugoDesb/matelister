@@ -1,5 +1,6 @@
 class MatelistsController < ApplicationController
   before_action :set_matelist, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /matelists or /matelists.json
   def index

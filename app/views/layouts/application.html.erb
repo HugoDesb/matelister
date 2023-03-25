@@ -12,8 +12,23 @@
   </head>
 
   <body>
-    <%= yield %>
 
-    <%= link_to "Sign out", cancel_user_registration_path %>
+    <header>
+      <h1>Matelist</h1>
+      <% if user_signed_in? %>
+        <p>You are connected as <%= @user.username %> with your <%= @user.provider.capitalize %> account.</p>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+      <% else %>
+        <%= button_to "Sign in with Deezer", user_deezer_omniauth_authorize_path, method: :post, data: { turbo: false } %>
+        <%= button_to "Sign in with Spotify", user_spotify_omniauth_authorize_path, method: :post, data: { turbo: false } %>
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+  <footer>
+    <p><i>Made with love by yours truly</i> </p>
+  </footer>
+
   </body>
 </html>
