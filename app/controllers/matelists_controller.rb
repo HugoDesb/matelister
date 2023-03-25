@@ -4,7 +4,7 @@ class MatelistsController < ApplicationController
 
   # GET /matelists or /matelists.json
   def index
-    @matelists = Matelist.all
+    @matelists = Matelist.where(user_id: current_user.id)
   end
 
   # GET /matelists/1 or /matelists/1.json
