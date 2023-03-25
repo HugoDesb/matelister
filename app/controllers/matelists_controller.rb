@@ -23,6 +23,7 @@ class MatelistsController < ApplicationController
   # POST /matelists or /matelists.json
   def create
     @matelist = Matelist.new(matelist_params)
+    @matelist.user = current_user
 
     respond_to do |format|
       if @matelist.save

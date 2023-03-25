@@ -21,6 +21,8 @@ gem "omniauth-spotify"
 gem 'omniauth-rails_csrf_protection'
 gem "multi_json"
 
+gem "httparty", '~> 0.21.0'
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
