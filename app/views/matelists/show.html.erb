@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @matelist %>
+
+<div>
+  <%= link_to "Edit this matelist", edit_matelist_path(@matelist) %> |
+  <%= link_to "Back to matelists", matelists_path %>
+
+  <%= button_to "Destroy this matelist", @matelist, method: :delete %>
+</div>

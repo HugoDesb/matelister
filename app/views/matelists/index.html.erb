@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Matelists</h1>
+
+<div id="matelists">
+  <% @matelists.each do |matelist| %>
+    <%= render matelist %>
+    <p>
+      <%= link_to "Show this matelist", matelist %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New matelist", new_matelist_path %>
