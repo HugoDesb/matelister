@@ -17,7 +17,7 @@
       <h1>Matelist</h1>
       <% if user_signed_in? %>
         <p>You are connected as <%= current_user.username %> with your <%= current_user.provider.capitalize %> account.</p>
-        <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo: false } %>
       <% else %>
         <%= button_to "Sign in with Deezer", user_deezer_omniauth_authorize_path, method: :post, data: { turbo: false } %>
         <%= button_to "Sign in with Spotify", user_spotify_omniauth_authorize_path, method: :post, data: { turbo: false } %>

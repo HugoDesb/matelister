@@ -1,19 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable,
+  devise :database_authenticatable, :rememberable,
          :omniauthable, omniauth_providers: %i[deezer spotify]
 
+  has_many :matelists
+
   def self.from_omniauth(auth)
-    logger.debug "#{auth.provider}"
-    logger.debug "#{auth.uid}"
-    logger.debug "#{auth.info}"
-    logger.debug "#{auth.credentials}"
-    logger.debug "#{auth.extra}"
-
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
-
 
       if auth.provider.to_sym == :deezer
         user.access_token = auth.credentials.token
@@ -36,12 +30,4 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
-
-  def to_s
-    attributes.each_with_object("") do |attribute, result|
-      result << "#{attribute[1].to_s} "
-    end
-  end
-
-
 end

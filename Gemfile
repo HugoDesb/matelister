@@ -23,6 +23,8 @@ gem "multi_json"
 
 gem "httparty", '~> 0.21.0'
 
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
