@@ -24,6 +24,22 @@ class MatelistsController < ApplicationController
   def create
     @matelist = Matelist.new(matelist_params)
     @matelist.user = current_user
+    title = "#{@matelist.name} from Matelister"
+
+    # TODO: remove this to an appropriate location ?
+    # Create playlist on platform
+    if @matelist.user.provider.to_sym == :spotify
+      response = SpotifyApi::CreatePlaylist.call(title, @matelist.user)
+    elsif @matelist.user.provider.to_sym == :deezer
+      response = DeezerApi::CreatePlaylist.call(title, @matelist.user)
+    end
+
+    # TODO: handle potential errors and get result
+    if response.code != Net::HTTPSuccess
+      # Handle error (notice?)
+    else
+      # get playlist uid, create in model
+    end
 
     respond_to do |format|
       if @matelist.save
