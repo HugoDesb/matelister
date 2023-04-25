@@ -10,7 +10,6 @@ module SpotifyApi
     def call
       @user = refresh_token_if_necessary
       body = { 'name' => @title }.to_json
-      puts @user.uid
       self.class.post("/users/#{@user.uid}/playlists",
                       body: body,
                       headers: {

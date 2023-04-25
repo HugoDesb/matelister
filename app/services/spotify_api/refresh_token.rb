@@ -17,10 +17,9 @@ module SpotifyApi
                                  headers: {
                                    'Authorization' => "Basic  #{auth}",
                                    'Content-Type' => 'application/x-www-form-urlencoded'
-                                 }, debug_output: $stdout)
+                                 })
 
       parsed = response.parsed_response
-      puts parsed
       @user.access_token = parsed['access_token']
       @user.expires_at = Time.now + parsed['expires_in'].to_i.seconds
       @user.save

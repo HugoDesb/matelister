@@ -41,8 +41,6 @@ class MatelistsController < ApplicationController
                                  name: title,
                                  provider: @matelist.user.provider,
                                  uid: parsed['id']))
-    puts @matelist.playlists
-    puts response.code
     respond_to do |format|
       if [200, 201].include?(response.code) && @matelist.save
         format.html { redirect_to matelist_url(@matelist), notice: 'Matelist was successfully created.' }
