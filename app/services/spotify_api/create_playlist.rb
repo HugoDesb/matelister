@@ -1,21 +1,30 @@
 module SpotifyApi
-  class CreatePlaylist < ApplicationService
-    include HTTParty
-    base_uri "https://api.spotify.com/v1"
+  class CreatePlaylist < SpotifyEndpoint
 
     def initialize(title, user)
       @title = title
       @user = user
     end
 
+
     def call
-      body = { "name" => @title }.to_json
+      @user = refresh_token_if_necessary
+      body = { 'name' => @title }.to_json
+      puts @user.uid
       self.class.post("/users/#{@user.uid}/playlists",
                       body: body,
                       headers: {
-                        "Authorization" => "Bearer #{@user.access_token}",
+                        'Authorization' => "Bearer #{@user.access_token}",
                         'Content-Type' => 'application/json'
                       })
+    end
+
+    def refresh_token_if_necessary
+      if @user.has_expired?
+        @user = SpotifyApi::RefreshToken.call(@user)
+      else
+        @user
+      end
     end
 
   end

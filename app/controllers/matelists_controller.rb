@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MatelistsController < ApplicationController
   before_action :set_matelist, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
@@ -35,18 +36,19 @@ class MatelistsController < ApplicationController
     end
 
     # TODO: handle potential errors and get result
-    if response.code != Net::HTTPSuccess
-      # Handle error (notice?)
-    else
-      # get playlist uid, create in model
-    end
-
+    parsed = response.parsed_response
+    @matelist.playlists.append(Playlist.new(
+                                 name: title,
+                                 provider: @matelist.user.provider,
+                                 uid: parsed['id']))
+    puts @matelist.playlists
+    puts response.code
     respond_to do |format|
-      if @matelist.save
-        format.html { redirect_to matelist_url(@matelist), notice: "Matelist was successfully created." }
+      if [200, 201].include?(response.code) && @matelist.save
+        format.html { redirect_to matelist_url(@matelist), notice: 'Matelist was successfully created.' }
         format.json { render :show, status: :created, location: @matelist }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to new_matelist_url, alert: 'Sorry, the matelist creation failed.', status: :unprocessable_entity }
         format.json { render json: @matelist.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +58,7 @@ class MatelistsController < ApplicationController
   def update
     respond_to do |format|
       if @matelist.update(matelist_params)
-        format.html { redirect_to matelist_url(@matelist), notice: "Matelist was successfully updated." }
+        format.html { redirect_to matelist_url(@matelist), notice: 'Matelist was successfully updated.' }
         format.json { render :show, status: :ok, location: @matelist }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -70,7 +72,7 @@ class MatelistsController < ApplicationController
     @matelist.destroy
 
     respond_to do |format|
-      format.html { redirect_to matelists_url, notice: "Matelist was successfully destroyed." }
+      format.html { redirect_to matelists_url, notice: 'Matelist was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

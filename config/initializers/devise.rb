@@ -272,8 +272,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :deezer , '407522', 'd482da32d0e5f1360bfa87e3ebb810a8', scope: 'basic_access,email,offline_access,manage_library'
-  config.omniauth :spotify , '36bd252fec5d4b3481dd9f121239332a', 'dfce24e1bf954493a03d99e0e9fbb71e', scope: 'user-read-email user-read-private playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public'
+  config.omniauth :deezer, '407522', 'd482da32d0e5f1360bfa87e3ebb810a8', scope: 'basic_access,email,offline_access,manage_library'
+  config.omniauth :spotify, '36bd252fec5d4b3481dd9f121239332a', 'dfce24e1bf954493a03d99e0e9fbb71e', scope: 'user-read-email user-read-private playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public'
 
 
   # ==> Warden configuration
