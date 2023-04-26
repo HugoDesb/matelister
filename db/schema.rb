@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_25_170150) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_25_192815) do
   create_table "invites", force: :cascade do |t|
     t.string "email"
     t.integer "matelist_id", null: false
-    t.string "otp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
+    t.string "code"
     t.index ["matelist_id"], name: "index_invites_on_matelist_id"
   end
 

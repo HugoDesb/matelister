@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :matelists
+  resources :matelists do
+    resources :invites
+  end
   root "home#index"
 end

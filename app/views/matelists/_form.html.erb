@@ -16,16 +16,6 @@
     <%= form.text_field :name %>
   </div>
 
-  <ul>
-    <%= form.fields_for :invites do | invite_form | %>
-      <li>
-        <%= invite_form.label :email %>
-        <%= invite_form.email_field :email %>
-      </li>
-
-    <% end  %>
-  </ul>
-
   <div>
     <%= form.submit %>
   </div>

@@ -1,0 +1,5 @@
+<%= form_with model: [matelist, Invite.new] do |form| %>
+  Invite a user to participate:
+  <%= form.email_field :email %>
+  <%= form.submit %>
+<% end %>

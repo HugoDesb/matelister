@@ -4,4 +4,18 @@
     <%= matelist.name %>
   </p>
 
+  <ul>
+    <table>
+      <tr>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+
+      <% matelist.invites.each do |invite| %>
+        <%= render 'invites/invite', invite: invite %>
+      <% end %>
+
+    </table>
+  </ul>
+
 </div>

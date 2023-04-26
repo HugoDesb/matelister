@@ -3,7 +3,9 @@
 
 <%= render @matelist %>
 
+
 <div>
+  <%= render 'invites/new', matelist: @matelist %>
   <%= link_to "Edit this matelist", edit_matelist_path(@matelist) %> |
   <%= link_to "Back to matelists", matelists_path %>
 
