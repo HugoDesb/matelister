@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_192815) do
-  create_table "invites", force: :cascade do |t|
-    t.string "email"
-    t.integer "matelist_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "status"
-    t.string "code"
-    t.index ["matelist_id"], name: "index_invites_on_matelist_id"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_183203) do
   create_table "matelists", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -59,6 +49,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_192815) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "invites", "matelists"
   add_foreign_key "matelists", "users"
 end
